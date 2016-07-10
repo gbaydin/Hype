@@ -283,7 +283,7 @@ and Util =
     /// Load values from delimited text file with given `filename` and separator characters `separators`
     static member LoadDelimited(filename:string, separators:char[]) =
         System.IO.File.ReadLines(filename)
-        |> Seq.map (fun x -> x.Split(separators) |> Array.map float32)
+        |> Seq.map (fun x -> x.Split(separators, StringSplitOptions.RemoveEmptyEntries) |> Array.map float32)
         |> Seq.map toDV
         |> DM.ofRows
     /// Load values from delimited text file with given `filename` and a default set of separator characters: space, comma, or tab
